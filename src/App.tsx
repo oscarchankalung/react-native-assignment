@@ -1,25 +1,26 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-} from 'react-native';
-
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import LoginScreen from './screens/LoginScreen';
+import CategoryListScreen from './screens/CategoryListScreen';
+import ItemDetailScreen from './screens/ItemDetailScreen';
+import ItemListScreen from './screens/ItemListScreen';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
 
   return (
     <NavigationContainer>
-      <SafeAreaView>
-        <Text>Testing</Text>
-      </SafeAreaView>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="CategoryList" component={CategoryListScreen} />
+        <Stack.Screen name="ItemDetail" component={ItemDetailScreen} />
+        <Stack.Screen name="ItemList" component={ItemListScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-
-});
 
 export default App;

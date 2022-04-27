@@ -1,19 +1,41 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+
+// navigation
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RouteProp } from '@react-navigation/native';
+import { AppStackParamList } from '../App';
+
+// hooks
 import { useAppDispatch, useAppSelector } from '../hooks/useStore';
 
-const CategoryListScreen = () => {
-  const categories = useAppSelector(state => state.article.categories);
+// components
+import ArticleCategoryList from '../components/articles/ArticleCategoryList';
+
+type Props = {
+  navigation: NativeStackNavigationProp<AppStackParamList, 'CategoryList'>;
+  route: RouteProp<AppStackParamList, 'CategoryList'>;
+};
+
+const CategoryListScreen: React.FC<Props> = () => {
+  const { loading, categories } = useAppSelector(state => state.article);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    // dispatch({ type: 'article/getCategories' });
-    dispatch({ type: 'article/getItems', payload: 'healthcare' });
+    dispatch({ type: 'article/getCategories', payload: {} });
   }, []);
+
+  if (loading) {
+    return (
+      <View>
+        <Text>Loading</Text>
+      </View>
+    );
+  }
 
   return (
     <View>
-      <Text>CategoryListScreen</Text>
+      <ArticleCategoryList data={categories} />
     </View>
   );
 };

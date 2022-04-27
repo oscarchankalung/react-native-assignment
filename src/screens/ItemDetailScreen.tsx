@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 // navigation
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -36,7 +36,14 @@ const ItemDetailScreen: React.FC<Props> = ({ route }) => {
     );
   }
 
-  return <View>{item && <ArticleDetail item={item} />}</View>;
+  return (
+    <ScrollView>
+      {item && <ArticleDetail item={item} />}
+      {item && <ArticleDetail item={item} />}
+      {item && <ArticleDetail item={item} />}
+      {item && <ArticleDetail item={item} />}
+    </ScrollView>
+  );
 };
 
 export default ItemDetailScreen;

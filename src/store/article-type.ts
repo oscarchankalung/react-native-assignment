@@ -1,8 +1,15 @@
+export type Article = {
+  category: ArticleCategory;
+  items: ArticleItem[];
+};
+
 export type ArticleCategory = {
+  id: string;
   name: string;
-}
+};
 
 export type ArticleItem = {
+  category: string;
   id: string;
   code: string;
   image: string;
@@ -22,4 +29,4 @@ export type ArticleItem = {
   max_quota: string;
   item_group_id: string;
   replace: boolean;
-}
+};

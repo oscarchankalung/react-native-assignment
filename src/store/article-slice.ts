@@ -7,6 +7,7 @@ interface ArticleState {
   message: string;
   categories: ArticleCategory[];
   items: ArticleItem[];
+  item: ArticleItem | undefined;
 }
 
 const initialState: ArticleState = {
@@ -14,6 +15,7 @@ const initialState: ArticleState = {
   message: '',
   categories: [],
   items: [],
+  item: undefined,
 };
 
 export const articleSlice = createSlice({
@@ -35,6 +37,9 @@ export const articleSlice = createSlice({
     },
     setArticleItems: (state, action: PayloadAction<ArticleItem[]>) => {
       state.items = action.payload;
+    },
+    setArticleItem: (state, action: PayloadAction<ArticleItem>) => {
+      state.item = action.payload;
     },
     reset: () => {
       return initialState;

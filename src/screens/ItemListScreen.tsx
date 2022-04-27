@@ -22,10 +22,10 @@ const ItemListScreen: React.FC<Props> = ({ route }) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch({
-      type: 'article/getItems',
-      payload: route.params,
-    });
+    dispatch({ type: 'article/getItems', payload: route.params });
+    return () => {
+      dispatch({ type: 'article/setArticleItems', payload: [] });
+    };
   }, []);
 
   if (loading) {

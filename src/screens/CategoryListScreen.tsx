@@ -23,6 +23,9 @@ const CategoryListScreen: React.FC<Props> = () => {
 
   useEffect(() => {
     dispatch({ type: 'article/getCategories', payload: {} });
+    return () => {
+      dispatch({ type: 'article/setArticleCategories', payload: [] });
+    };
   }, []);
 
   if (loading) {

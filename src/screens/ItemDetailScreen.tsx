@@ -23,6 +23,9 @@ const ItemDetailScreen: React.FC<Props> = ({ route }) => {
 
   useEffect(() => {
     dispatch({ type: 'article/getItem', payload: route.params });
+    return () => {
+      dispatch({ type: 'article/setArticleItem', payload: null });
+    };
   }, []);
 
   if (loading) {

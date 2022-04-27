@@ -9,4 +9,4 @@
 - [ ] Switch to `Redux Toolkit` and `RTK Query`
 - [ ] Support localization using `i18Next`
 - [ ] Refactor `LoginScreen` for modulability
-- [ ] Add style
+- [ ] Improve ui and style

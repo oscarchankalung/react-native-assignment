@@ -1,8 +1,29 @@
-import {configureStore} from '@reduxjs/toolkit';
+// redux
+import { configureStore } from '@reduxjs/toolkit';
+import article from './article-slice';
+
+// saga
+import { all } from 'redux-saga/effects';
+import {
+  watchFetchArticleCategory,
+  watchFetchArticleItem,
+} from './article-sagas';
+import createSagaMiddleware from 'redux-saga';
+
+function* rootSaga() {
+  yield all([watchFetchArticleCategory(), watchFetchArticleItem()]);
+}
+
+const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    article: article,
+  },
+  middleware: [sagaMiddleware],
 });
+
+sagaMiddleware.run(rootSaga);
 
 export default store;
 

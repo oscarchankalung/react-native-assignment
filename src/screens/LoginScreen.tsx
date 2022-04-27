@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     padding: 12,
-    backgroundColor: 'orange',
+    // backgroundColor: 'orange',
   },
   inputContainer: {
     marginBottom: 10,

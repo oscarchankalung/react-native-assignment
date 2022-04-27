@@ -14,6 +14,7 @@ import * as yup from 'yup';
 
 // navigation
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RouteProp } from '@react-navigation/native';
 import { AppStackParamList } from '../App';
 
 const schema = yup.object().shape({
@@ -21,9 +22,10 @@ const schema = yup.object().shape({
   password: yup.string().required('Please enter password'),
 });
 
-interface Props {
+type Props = {
   navigation: NativeStackNavigationProp<AppStackParamList, 'Login'>;
-}
+  route: RouteProp<AppStackParamList, 'Login'>;
+};
 
 const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const {

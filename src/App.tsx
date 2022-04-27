@@ -2,7 +2,10 @@ import React from 'react';
 
 // navigation
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from '@react-navigation/native-stack';
 
 // screens
 import LoginScreen from './screens/LoginScreen';
@@ -17,9 +20,12 @@ import { Provider } from 'react-redux';
 export type AppStackParamList = {
   Login: undefined;
   CategoryList: undefined;
-  ItemDetail: undefined;
-  ItemList: undefined;
+  ItemList: { category: string };
+  ItemDetail: { category: string; id: string };
 };
+
+export type AppStackNavigationProp =
+  NativeStackNavigationProp<AppStackParamList>;
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 

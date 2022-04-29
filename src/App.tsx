@@ -31,16 +31,18 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="CategoryList" component={CategoryListScreen} />
-          <Stack.Screen name="ItemDetail" component={ItemDetailScreen} />
-          <Stack.Screen name="ItemList" component={ItemListScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
+    <React.StrictMode>
+      <Provider store={store}>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="CategoryList" component={CategoryListScreen} />
+            <Stack.Screen name="ItemDetail" component={ItemDetailScreen} />
+            <Stack.Screen name="ItemList" component={ItemListScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
+    </React.StrictMode>
   );
 };
 

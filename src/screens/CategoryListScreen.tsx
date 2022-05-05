@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
 // navigation
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/useStore';
 
 // components
 import ArticleCategoryList from '../components/articles/ArticleCategoryList';
+import { articleSelectors } from '../store/article-slice';
 
 type Props = {
   navigation: NativeStackNavigationProp<AppStackParamList, 'CategoryList'>;
@@ -18,31 +19,28 @@ type Props = {
 };
 
 const CategoryListScreen: React.FC<Props> = () => {
-  const { loading, categories } = useAppSelector(state => state.article);
+  const loading = useAppSelector(state => state.article.loading);
+  const categories = useAppSelector(state =>
+    articleSelectors.selectCategories(state),
+  );
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch({ type: 'article/getCategories', payload: {} });
-    return () => {
-      dispatch({ type: 'article/setArticleCategories', payload: [] });
-    };
-  }, []);
+    dispatch({ type: 'article/getArticles' });
+  }, [dispatch]);
+
+  let content;
 
   if (loading) {
-    return (
-      <View>
-        <Text>Loading</Text>
-      </View>
-    );
+    content = <Text>Loading</Text>;
+  } else {
+    content = <ArticleCategoryList data={categories} />;
   }
 
-  return (
-    <View>
-      <ArticleCategoryList data={categories} />
-    </View>
-  );
+  return <View>{content}</View>;
 };
 
 export default CategoryListScreen;
 
-const styles = StyleSheet.create({});
+// const styles = StyleSheet.create({});

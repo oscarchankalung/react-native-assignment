@@ -10,7 +10,7 @@ type Props = {
   title: string;
 };
 
-const ArticleCategory: React.FC<Props> = ({ id, title }) => {
+const ArticleCategoryItem: React.FC<Props> = ({ id, title }) => {
   const navigation = useNavigation<AppStackNavigationProp>();
   const onPress = () => {
     navigation.navigate('ItemList', {
@@ -25,7 +25,7 @@ const ArticleCategory: React.FC<Props> = ({ id, title }) => {
   );
 };
 
-export default ArticleCategory;
+export default ArticleCategoryItem;
 
 const styles = StyleSheet.create({
   item: {

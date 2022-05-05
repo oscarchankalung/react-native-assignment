@@ -5,13 +5,14 @@ import { ArticleItem as Item } from '../../store/article-type';
 import ArticleItem from './ArticleItem';
 
 type Props = {
-  data: Item[];
+  category: string;
+  items: Item[];
 };
 
-const ArticleItemList: React.FC<Props> = ({ data }) => {
+const ArticleItemList: React.FC<Props> = ({ category, items }) => {
   const renderItem: ListRenderItem<Item> = ({ item }) => (
     <ArticleItem
-      category={item.category}
+      category={category}
       id={item.id}
       title={item.name}
       description={item.description}
@@ -21,7 +22,7 @@ const ArticleItemList: React.FC<Props> = ({ data }) => {
 
   return (
     <FlatList
-      data={data}
+      data={items}
       renderItem={renderItem}
       keyExtractor={item => item.id}
       contentContainerStyle={styles.container}

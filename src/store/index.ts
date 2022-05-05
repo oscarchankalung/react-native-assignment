@@ -4,19 +4,11 @@ import article from './article-slice';
 
 // saga
 import { all } from 'redux-saga/effects';
-import {
-  watchFetchArticleCategory,
-  watchFetchArticleItems,
-  watchFetchArticleItem,
-} from './article-sagas';
+import { articleSagas } from './article-sagas';
 import createSagaMiddleware from 'redux-saga';
 
 function* rootSaga() {
-  yield all([
-    watchFetchArticleCategory(),
-    watchFetchArticleItems(),
-    watchFetchArticleItem(),
-  ]);
+  yield all([articleSagas.watchFetchArticles()]);
 }
 
 const sagaMiddleware = createSagaMiddleware();

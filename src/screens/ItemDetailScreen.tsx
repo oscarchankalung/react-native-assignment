@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import React, { Fragment } from 'react';
+import { Text, ScrollView } from 'react-native';
 
 // navigation
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -7,10 +7,11 @@ import { RouteProp } from '@react-navigation/native';
 import { AppStackParamList } from '../App';
 
 // hooks
-import { useAppSelector, useAppDispatch } from '../hooks/useStore';
+import { useAppSelector } from '../hooks/useStore';
 
 // components
 import ArticleDetail from '../components/articles/ArticleDetail';
+import { articleSelectors } from '../store/article-slice';
 
 type Props = {
   navigation: NativeStackNavigationProp<AppStackParamList, 'ItemDetail'>;
@@ -18,34 +19,30 @@ type Props = {
 };
 
 const ItemDetailScreen: React.FC<Props> = ({ route }) => {
-  const { loading, item } = useAppSelector(state => state.article);
-  const dispatch = useAppDispatch();
+  const { category, id } = route.params;
+  const loading = useAppSelector(state => state.article.loading);
+  const item = useAppSelector(state =>
+    articleSelectors.selectItem(state, category, id),
+  );
 
-  useEffect(() => {
-    dispatch({ type: 'article/getItem', payload: route.params });
-    return () => {
-      dispatch({ type: 'article/setArticleItem', payload: null });
-    };
-  }, []);
+  let content;
 
   if (loading) {
-    return (
-      <View>
-        <Text>Loading</Text>
-      </View>
+    content = <Text>Loading</Text>;
+  } else {
+    content = (
+      <Fragment>
+        {item && <ArticleDetail item={item} />}
+        {item && <ArticleDetail item={item} />}
+        {item && <ArticleDetail item={item} />}
+        {item && <ArticleDetail item={item} />}
+      </Fragment>
     );
   }
 
-  return (
-    <ScrollView>
-      {item && <ArticleDetail item={item} />}
-      {item && <ArticleDetail item={item} />}
-      {item && <ArticleDetail item={item} />}
-      {item && <ArticleDetail item={item} />}
-    </ScrollView>
-  );
+  return <ScrollView>{content}</ScrollView>;
 };
 
 export default ItemDetailScreen;
 
-const styles = StyleSheet.create({});
+// const styles = StyleSheet.create({});

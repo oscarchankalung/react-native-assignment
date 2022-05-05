@@ -1,21 +1,18 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from './index';
+import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ArticleCategory, ArticleItem } from './article-type';
+import { Articles } from './article-type';
 
 interface ArticleState {
   loading: boolean;
   message: string;
-  categories: ArticleCategory[];
-  items: ArticleItem[];
-  item: ArticleItem | undefined;
+  articles: Articles;
 }
 
 const initialState: ArticleState = {
   loading: false,
   message: '',
-  categories: [],
-  items: [],
-  item: undefined,
+  articles: {},
 };
 
 export const articleSlice = createSlice({
@@ -32,14 +29,8 @@ export const articleSlice = createSlice({
       state.loading = false;
       state.message = action.payload;
     },
-    setArticleCategories: (state, action: PayloadAction<ArticleCategory[]>) => {
-      state.categories = action.payload;
-    },
-    setArticleItems: (state, action: PayloadAction<ArticleItem[]>) => {
-      state.items = action.payload;
-    },
-    setArticleItem: (state, action: PayloadAction<ArticleItem>) => {
-      state.item = action.payload;
+    setArticles: (state, action: PayloadAction<Articles>) => {
+      state.articles = action.payload;
     },
     reset: () => {
       return initialState;
@@ -50,3 +41,30 @@ export const articleSlice = createSlice({
 export const articleActions = articleSlice.actions;
 
 export default articleSlice.reducer;
+
+const selectArticles = (state: RootState) => state.article.articles;
+
+export const articleSelectors = {
+  selectCategories: createSelector(selectArticles, articles => {
+    return Object.entries(articles).map(([key, value]) => ({
+      id: key,
+      ...value.category,
+    }));
+  }),
+  selectItems: createSelector(
+    [selectArticles, (_articles, category: string) => category],
+    (articles, category) => {
+      return articles[category].items;
+    },
+  ),
+  selectItem: createSelector(
+    [
+      selectArticles,
+      (_articles, category: string) => category,
+      (_articles, _category, id: string) => id,
+    ],
+    (articles, category, id) => {
+      return articles[category].items.find(item => item.id === id);
+    },
+  ),
+};

@@ -43,7 +43,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const focusUsername = () => usernameRef.current?.focus();
   const focusPassword = () => passwordRef.current?.focus();
 
-  const onSubmit = handleSubmit(data => {
+  const onSubmit = handleSubmit(() => {
     navigation.navigate('CategoryList');
     reset();
   });
@@ -69,7 +69,8 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                onSubmitEditing={focusPassword}></TextInput>
+                onSubmitEditing={focusPassword}
+              />
               {error && <Text style={styles.error}>{error}</Text>}
             </TouchableOpacity>
           );
@@ -93,7 +94,8 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
                 style={styles.input}
                 onBlur={onBlur}
                 onChangeText={onChange}
-                value={value}></TextInput>
+                value={value}
+              />
               {error && <Text style={styles.error}>{error}</Text>}
             </TouchableOpacity>
           );

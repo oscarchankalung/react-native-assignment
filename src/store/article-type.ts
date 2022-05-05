@@ -1,15 +1,15 @@
-export type Article = {
-  category: ArticleCategory;
-  items: ArticleItem[];
+export type Articles = {
+  [key in string]: {
+    category: ArticleCategory;
+    items: ArticleItem[];
+  };
 };
 
 export type ArticleCategory = {
-  id: string;
   name: string;
 };
 
 export type ArticleItem = {
-  category: string;
   id: string;
   code: string;
   image: string;

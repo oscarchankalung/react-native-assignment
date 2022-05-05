@@ -1,16 +1,16 @@
 import React from 'react';
 import { FlatList, ListRenderItem, StyleSheet } from 'react-native';
 
-import { ArticleCategory as Item } from '../../store/article-type';
-import ArticleCategory from './ArticleCategory';
+import { ArticleCategoryDict, ArticleCategory } from '../../store/article-type';
+import ArticleCategoryItem from './ArticleCategoryItem';
 
 type Props = {
-  data: Item[];
+  data: ArticleCategoryDict;
 };
 
 const ArticleCategoryList: React.FC<Props> = ({ data }) => {
-  const renderItem: ListRenderItem<Item> = ({ item }) => (
-    <ArticleCategory id={item.id} title={item.name} />
+  const renderItem: ListRenderItem<ArticleCategory> = ({ item }) => (
+    <ArticleCategoryItem id={item.id} title={item.name} />
   );
 
   return (

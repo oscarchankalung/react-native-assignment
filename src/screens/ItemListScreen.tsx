@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { Text, View } from 'react-native';
 
 // navigation
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -7,10 +7,11 @@ import { RouteProp } from '@react-navigation/native';
 import { AppStackParamList } from '../App';
 
 // hooks
-import { useAppSelector, useAppDispatch } from '../hooks/useStore';
+import { useAppSelector } from '../hooks/useStore';
 
 // components
 import ArticleItemList from '../components/articles/ArticleItemList';
+import { articleSelectors } from '../store/article-slice';
 
 type Props = {
   navigation: NativeStackNavigationProp<AppStackParamList, 'ItemList'>;
@@ -18,31 +19,23 @@ type Props = {
 };
 
 const ItemListScreen: React.FC<Props> = ({ route }) => {
-  const { loading, items } = useAppSelector(state => state.article);
-  const dispatch = useAppDispatch();
+  const category = route.params.category;
+  const loading = useAppSelector(state => state.article.loading);
+  const items = useAppSelector(state =>
+    articleSelectors.selectItems(state, category),
+  );
 
-  useEffect(() => {
-    dispatch({ type: 'article/getItems', payload: route.params });
-    return () => {
-      dispatch({ type: 'article/setArticleItems', payload: [] });
-    };
-  }, []);
+  let content;
 
   if (loading) {
-    return (
-      <View>
-        <Text>Loading</Text>
-      </View>
-    );
+    content = <Text>Loading</Text>;
+  } else {
+    content = <ArticleItemList category={category} items={items} />;
   }
 
-  return (
-    <View>
-      <ArticleItemList data={items} />
-    </View>
-  );
+  return <View>{content}</View>;
 };
 
 export default ItemListScreen;
 
-const styles = StyleSheet.create({});
+// const styles = StyleSheet.create({});

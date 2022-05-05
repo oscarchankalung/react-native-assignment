@@ -1,10 +1,11 @@
 // redux
 import { configureStore } from '@reduxjs/toolkit';
-import article from './article-slice';
+import article from './articleSlice';
+import apiSlice from './apiSlice';
 
 // saga
 import { all } from 'redux-saga/effects';
-import { articleSagas } from './article-sagas';
+import { articleSagas } from './articleSagas';
 import createSagaMiddleware from 'redux-saga';
 
 function* rootSaga() {
@@ -16,6 +17,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store = configureStore({
   reducer: {
     article: article,
+    [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: [sagaMiddleware],
 });

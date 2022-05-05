@@ -1,7 +1,7 @@
 import { RootState } from './index';
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Articles } from './article-type';
+import { Articles } from './articleType';
 
 interface ArticleState {
   loading: boolean;

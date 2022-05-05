@@ -11,7 +11,7 @@ import { useAppSelector } from '../hooks/useStore';
 
 // components
 import ArticleItemList from '../components/articles/ArticleItemList';
-import { articleSelectors } from '../store/article-slice';
+import { articleSelectors } from '../store/articleSlice';
 
 type Props = {
   navigation: NativeStackNavigationProp<AppStackParamList, 'ItemList'>;

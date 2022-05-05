@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { ArticleItem } from '../../store/article-type';
+import { StyleSheet, Text, View } from 'react-native';
+
+import { ArticleItem } from '../../store/articleType';
 
 type Props = {
   item: ArticleItem;
@@ -14,7 +15,6 @@ const ArticleDetail: React.FC<Props> = ({ item }) => {
           {key}: {value}
         </Text>
       ))}
-      <Text></Text>
     </View>
   );
 };

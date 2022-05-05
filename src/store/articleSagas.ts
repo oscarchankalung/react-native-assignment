@@ -1,12 +1,12 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
 // service
-import { articleService } from './../services/Article';
+import { articleService } from '../services/Article';
 
 // store
-import { Articles } from './article-type';
-import { articleActions } from './article-slice';
-import { articleSagaActions } from './article-actions';
+import { Articles } from './articleType';
+import { articleActions } from './articleSlice';
+import { articleSagaActions } from './articleActions';
 
 function* fetchArticlesSaga() {
   try {

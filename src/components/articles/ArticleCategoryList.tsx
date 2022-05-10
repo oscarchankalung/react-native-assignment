@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList, ListRenderItem, StyleSheet } from 'react-native';
 
-import ArticleCategoryItem from './ArticleCategoryExcerpt';
+import ArticleCategoryExcerpt from './ArticleCategoryExcerpt';
 
 type ArticleCategoryType = {
   id: string;
@@ -14,7 +14,7 @@ type Props = {
 
 const ArticleCategoryList: React.FC<Props> = ({ data }) => {
   const renderItem: ListRenderItem<ArticleCategoryType> = ({ item }) => (
-    <ArticleCategoryItem id={item.id} title={item.name} />
+    <ArticleCategoryExcerpt id={item.id} title={item.name} />
   );
 
   return (

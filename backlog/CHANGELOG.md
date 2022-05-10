@@ -4,10 +4,10 @@
 
 - [x] 20220427 Finished basic features
 - [x] 20220429 Switch to `Redux Toolkit` and `RTK Query`
+- [x] 20220510 Support localization using `i18Next`
 
 ## Todo
 
-- [ ] Support localization using `i18Next`
 - [ ] Refactor `LoginScreen` for modulability
 - [ ] Add `redux-persist`
 - [ ] Improve ui and style

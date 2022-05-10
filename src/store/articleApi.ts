@@ -1,19 +1,21 @@
+import i18next from 'i18next';
 import { createSelector } from '@reduxjs/toolkit';
 
 import apiSlice from './apiSlice';
 
 import { Articles } from './articleType';
+import { LanguageKey } from '../constants/Languages';
 
 export const articleApi = apiSlice.injectEndpoints({
   endpoints: builder => ({
-    getArticles: builder.query<Articles, void>({
-      query: () => '/getAll',
+    getArticles: builder.query<Articles, LanguageKey>({
+      query: language => `/getAll/?lang=${language}`,
     }),
   }),
 });
 
 const selectArticlesData = createSelector(
-  articleApi.endpoints.getArticles.select(),
+  articleApi.endpoints.getArticles.select(i18next.language as LanguageKey),
   articlesResult => articlesResult.data ?? {},
 );
 

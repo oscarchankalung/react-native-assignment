@@ -7,7 +7,7 @@ type Props = {
   item: ArticleItem;
 };
 
-const ArticleDetail: React.FC<Props> = ({ item }) => {
+const ArticleItemDetail: React.FC<Props> = ({ item }) => {
   return (
     <View style={styles.container}>
       {Object.entries(item).map(([key, value], index) => (
@@ -19,7 +19,7 @@ const ArticleDetail: React.FC<Props> = ({ item }) => {
   );
 };
 
-export default ArticleDetail;
+export default ArticleItemDetail;
 
 const styles = StyleSheet.create({
   container: { margin: 16 },

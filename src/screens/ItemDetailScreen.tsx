@@ -11,7 +11,7 @@ import { useAppSelector } from '../hooks/useStore';
 import { articleSelectors } from '../store/articleSlice';
 
 // components
-import ArticleDetail from '../components/articles/ArticleDetail';
+import ArticleItemDetail from '../components/articles/ArticleItemDetail';
 
 type Props = {
   navigation: NativeStackNavigationProp<AppStackParamList, 'ItemDetail'>;
@@ -34,9 +34,9 @@ const ItemDetailScreen: React.FC<Props> = ({ route }) => {
   } else if (item) {
     content = (
       <Fragment>
-        <ArticleDetail item={item} />
-        <ArticleDetail item={item} />
-        <ArticleDetail item={item} />
+        <ArticleItemDetail item={item} />
+        <ArticleItemDetail item={item} />
+        <ArticleItemDetail item={item} />
       </Fragment>
     );
   }

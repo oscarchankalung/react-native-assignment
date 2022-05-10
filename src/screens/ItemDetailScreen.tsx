@@ -6,12 +6,12 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
 import { AppStackParamList } from '../App';
 
-// hooks
+// store
 import { useAppSelector } from '../hooks/useStore';
+import { articleSelectors } from '../store/articleSlice';
 
 // components
 import ArticleDetail from '../components/articles/ArticleDetail';
-import { articleSelectors } from '../store/articleSlice';
 
 type Props = {
   navigation: NativeStackNavigationProp<AppStackParamList, 'ItemDetail'>;

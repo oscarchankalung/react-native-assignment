@@ -19,7 +19,8 @@ const store = configureStore({
     article: article,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
-  middleware: [sagaMiddleware],
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat(apiSlice.middleware, sagaMiddleware),
 });
 
 sagaMiddleware.run(rootSaga);

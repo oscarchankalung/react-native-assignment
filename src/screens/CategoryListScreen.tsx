@@ -6,12 +6,14 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
 import { AppStackParamList } from '../App';
 
-// hooks
+// store
 import { useAppDispatch, useAppSelector } from '../hooks/useStore';
+import { articleSelectors } from '../store/articleSlice';
+// import { articleSelectors } from '../store/articleApi';
+// import { articleApi } from '../store/articleApi';
 
 // components
 import ArticleCategoryList from '../components/articles/ArticleCategoryList';
-import { articleSelectors } from '../store/articleSlice';
 
 type Props = {
   navigation: NativeStackNavigationProp<AppStackParamList, 'CategoryList'>;
@@ -29,6 +31,8 @@ const CategoryListScreen: React.FC<Props> = () => {
   useEffect(() => {
     dispatch({ type: 'article/getArticles' });
   }, [dispatch]);
+
+  // articleApi.useGetArticlesQuery();
 
   let content;
 

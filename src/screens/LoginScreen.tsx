@@ -7,6 +7,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+// translation
+import { useTranslation } from 'react-i18next';
+
 // forms
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -17,9 +20,12 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
 import { AppStackParamList } from '../App';
 
+// components
+import LanguageSelector from '../components/login/LanguageSelector';
+
 const schema = yup.object().shape({
-  username: yup.string().required('Please enter username'),
-  password: yup.string().required('Please enter password'),
+  username: yup.string().required('form.requiredUsername'),
+  password: yup.string().required('form.requiredPassword'),
 });
 
 type Props = {
@@ -28,6 +34,8 @@ type Props = {
 };
 
 const LoginScreen: React.FC<Props> = ({ navigation }) => {
+  const { t } = useTranslation();
+
   const {
     control,
     handleSubmit,
@@ -62,7 +70,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
               style={styles.inputContainer}
               onPress={focusUsername}
               activeOpacity={1}>
-              <Text style={styles.label}>Username</Text>
+              <Text style={styles.label}>{t('login.username')}</Text>
               <TextInput
                 ref={usernameRef}
                 style={styles.input}
@@ -71,7 +79,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
                 value={value}
                 onSubmitEditing={focusPassword}
               />
-              {error && <Text style={styles.error}>{error}</Text>}
+              {error && <Text style={styles.error}>{t(error)}</Text>}
             </TouchableOpacity>
           );
         }}
@@ -88,7 +96,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
               style={styles.inputContainer}
               onPress={focusPassword}
               activeOpacity={1}>
-              <Text style={styles.label}>Password</Text>
+              <Text style={styles.label}>{t('login.password')}</Text>
               <TextInput
                 ref={passwordRef}
                 style={styles.input}
@@ -96,14 +104,15 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
                 onChangeText={onChange}
                 value={value}
               />
-              {error && <Text style={styles.error}>{error}</Text>}
+              {error && <Text style={styles.error}>{t(error)}</Text>}
             </TouchableOpacity>
           );
         }}
       />
       <TouchableOpacity style={styles.button} onPress={onSubmit}>
-        <Text>Submit</Text>
+        <Text>{t('login.login')}</Text>
       </TouchableOpacity>
+      <LanguageSelector />
     </View>
   );
 };

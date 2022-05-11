@@ -22,6 +22,8 @@ import { AppStackParamList } from '../App';
 
 // components
 import LanguageSelector from '../components/login/LanguageSelector';
+import TextField from '../components/form/TextField';
+import PasswordField from '../components/form/PasswordField';
 
 const schema = yup.object().shape({
   username: yup.string().required('form.requiredUsername'),
@@ -57,7 +59,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   });
 
   return (
-    <View style={styles.view}>
+    <View style={styles.container}>
       <Controller
         control={control}
         name="username"
@@ -65,22 +67,20 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         render={({ field }) => {
           const { onChange, onBlur, value } = field;
           const error = errors.username?.message;
+
           return (
-            <TouchableOpacity
-              style={styles.inputContainer}
+            <TextField
+              ref={usernameRef}
+              label={t('login.username')}
+              value={value}
+              error={t(error)}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              onSubmitEditing={focusPassword}
               onPress={focusUsername}
-              activeOpacity={1}>
-              <Text style={styles.label}>{t('login.username')}</Text>
-              <TextInput
-                ref={usernameRef}
-                style={styles.input}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                onSubmitEditing={focusPassword}
-              />
-              {error && <Text style={styles.error}>{t(error)}</Text>}
-            </TouchableOpacity>
+              returnKeyType="next"
+              keyboardType="default"
+            />
           );
         }}
       />
@@ -91,21 +91,19 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         render={({ field }) => {
           const { onChange, onBlur, value } = field;
           const error = errors.password?.message;
+
           return (
-            <TouchableOpacity
-              style={styles.inputContainer}
+            <PasswordField
+              ref={passwordRef}
+              label={t('login.password')}
+              value={value}
+              error={t(error)}
+              onBlur={onBlur}
+              onChangeText={onChange}
               onPress={focusPassword}
-              activeOpacity={1}>
-              <Text style={styles.label}>{t('login.password')}</Text>
-              <TextInput
-                ref={passwordRef}
-                style={styles.input}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-              />
-              {error && <Text style={styles.error}>{t(error)}</Text>}
-            </TouchableOpacity>
+              returnKeyType="done"
+              keyboardType="default"
+            />
           );
         }}
       />
@@ -120,28 +118,10 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-  view: {
+  container: {
     flex: 1,
     padding: 12,
     // backgroundColor: 'orange',
-  },
-  inputContainer: {
-    marginBottom: 10,
-    // backgroundColor: 'yellow',
-  },
-  label: {
-    marginBottom: 10,
-  },
-  input: {
-    height: 40,
-    padding: 10,
-    borderWidth: 1,
-    // backgroundColor: 'blue',
-  },
-  error: {
-    color: 'red',
-    paddingTop: 10,
-    // backgroundColor: 'pink',
   },
   button: {
     height: 40,

@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
-    marginTop: 16,
     // backgroundColor: 'pink',
   },
   button: {

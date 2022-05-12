@@ -34,6 +34,7 @@ export default ArticleItemList;
 
 const styles = StyleSheet.create({
   container: {
+    flexGrow: 1,
     paddingVertical: 8,
     // backgroundColor: 'red',
   },

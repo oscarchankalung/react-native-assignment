@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 // navigation
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -14,6 +14,7 @@ import { articleSelectors } from '../store/articleSlice';
 
 // components
 import ArticleCategoryList from '../components/articles/ArticleCategoryList';
+import LoadingCircule from '../components/layouts/LoadingCircule';
 
 type Props = {
   navigation: NativeStackNavigationProp<AppStackParamList, 'CategoryList'>;
@@ -37,14 +38,19 @@ const CategoryListScreen: React.FC<Props> = () => {
   let content;
 
   if (loading) {
-    content = <Text>Loading</Text>;
+    content = <LoadingCircule />;
   } else {
     content = <ArticleCategoryList data={categories} />;
   }
 
-  return <View>{content}</View>;
+  return <View style={styles.container}>{content}</View>;
 };
 
 export default CategoryListScreen;
 
-// const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    // backgroundColor: 'orange',
+  },
+});

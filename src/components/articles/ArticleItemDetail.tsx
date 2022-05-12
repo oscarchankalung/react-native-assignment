@@ -22,5 +22,8 @@ const ArticleItemDetail: React.FC<Props> = ({ item }) => {
 export default ArticleItemDetail;
 
 const styles = StyleSheet.create({
-  container: { margin: 16 },
+  container: {
+    margin: 16,
+    // backgroundColor: 'red',
+  },
 });

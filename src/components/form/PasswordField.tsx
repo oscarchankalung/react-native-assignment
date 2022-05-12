@@ -25,9 +25,7 @@ const PasswordField = React.forwardRef<TextInput, Props>((props, ref) => {
   const { label, error, onPress } = props;
 
   const [showPassword, setShowPassword] = useState(false);
-  const onToggleShowPasswordPressed = () => {
-    setShowPassword(prev => !prev);
-  };
+  const onPasswordTogglePressed = () => setShowPassword(prev => !prev);
 
   const PasswordIcons = {
     Show: <Icon name="eye-outline" size={24} color="black" />,
@@ -36,7 +34,7 @@ const PasswordField = React.forwardRef<TextInput, Props>((props, ref) => {
   const PasswordToggle = (
     <TouchableOpacity
       style={styles.icon}
-      onPress={onToggleShowPasswordPressed}
+      onPress={onPasswordTogglePressed}
       activeOpacity={1}>
       {showPassword ? PasswordIcons.Show : PasswordIcons.Hide}
     </TouchableOpacity>

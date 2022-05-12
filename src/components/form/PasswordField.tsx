@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import FormStyles from './FormStyles';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export interface Props extends TextInputProps {
   label: string;
@@ -31,6 +32,7 @@ const PasswordField = React.forwardRef<TextInput, Props>((props, ref) => {
       <Text style={styles.label}>{label}</Text>
       <TouchableOpacity style={styles.inputContainer}>
         <TextInput ref={ref} style={styles.input} secureTextEntry {...props} />
+        <Icon name="eye" size={30} />
       </TouchableOpacity>
       {Boolean(error) && <Text style={styles.error}>{error}</Text>}
     </TouchableOpacity>

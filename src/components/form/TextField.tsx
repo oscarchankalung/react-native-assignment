@@ -22,16 +22,17 @@ export interface Props extends TextInputProps {
 }
 
 const TextField = React.forwardRef<TextInput, Props>((props, ref) => {
-  const { label, error } = props;
+  const { label, icon, error, onPress } = props;
 
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={props.onPress}
+      onPress={onPress}
       activeOpacity={1}>
       <Text style={styles.label}>{label}</Text>
       <View style={styles.inputContainer}>
-        <TextInput ref={ref} style={styles.input} {...props} />
+        <TextInput ref={ref} style={styles.inputField} {...props} />
+        <View style={styles.icon}>{icon}</View>
       </View>
       {Boolean(error) && <Text style={styles.error}>{error}</Text>}
     </TouchableOpacity>
@@ -43,8 +44,9 @@ export default TextField;
 const styles = StyleSheet.create({
   ...FormStyles,
   // container: {},
-  // inputContainer: {},
   // label: {},
-  // input: {},
+  // inputContainer: {},
+  // inputField: {},
+  // inputIcon: {},
   // error: {},
 });

@@ -8,12 +8,22 @@ const FormStyles = StyleSheet.create({
   label: {
     marginBottom: 10,
   },
-  inputContainer: {},
-  input: {
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1.5,
+  },
+  inputField: {
+    flex: 1,
     height: 40,
     padding: 10,
-    borderWidth: 1,
     // backgroundColor: 'blue',
+  },
+  icon: {
+    justifyContent: 'center',
+    height: 40,
+    paddingHorizontal: 8,
+    // backgroundColor: 'orange',
   },
   error: {
     color: 'red',

@@ -24,6 +24,7 @@ import { AppStackParamList } from '../App';
 import LanguageSelector from '../components/login/LanguageSelector';
 import TextField from '../components/form/TextField';
 import PasswordField from '../components/form/PasswordField';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const schema = yup.object().shape({
   username: yup.string().required('form.requiredUsername'),
@@ -53,6 +54,8 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const focusUsername = () => usernameRef.current?.focus();
   const focusPassword = () => passwordRef.current?.focus();
 
+  const usernameIcon = <Icon name="account" size={24} color="black" />;
+
   const onSubmit = handleSubmit(() => {
     navigation.navigate('CategoryList');
     reset();
@@ -73,6 +76,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
               ref={usernameRef}
               label={t('login.username')}
               value={value}
+              icon={usernameIcon}
               error={t(error)}
               onBlur={onBlur}
               onChangeText={onChange}

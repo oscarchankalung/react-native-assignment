@@ -13,7 +13,7 @@ const sc: LanguageStrings = {
     login: '登入',
   },
   async: {
-    loading: '加载中',
+    loading: '加载中...',
   },
   form: {
     requiredUsername: '请输入用户名',

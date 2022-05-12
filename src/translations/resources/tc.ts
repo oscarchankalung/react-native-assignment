@@ -11,7 +11,7 @@ const tc = {
     login: '登入',
   },
   async: {
-    loading: '加載中',
+    loading: '加載中...',
   },
   form: {
     requiredUsername: '請輸入用戶名',

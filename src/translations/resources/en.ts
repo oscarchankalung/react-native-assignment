@@ -13,7 +13,7 @@ const en: LanguageStrings = {
     login: 'Login',
   },
   async: {
-    loading: 'loading',
+    loading: 'Loading...',
   },
   form: {
     requiredUsername: 'Please enter username',

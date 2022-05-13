@@ -33,5 +33,16 @@ target 'react_native_assignment_oscar_chan' do
   post_install do |installer|
     react_native_post_install(installer)
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
+
+    installer.pods_project.targets.each do |target|
+      if target.name == 'React-Core'
+        target.build_configurations.each do |config|
+          if config.name == 'Debug'
+            config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
+            config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] + ['RCT_METRO_PORT=8088']
+          end
+        end
+      end
+    end
   end
 end

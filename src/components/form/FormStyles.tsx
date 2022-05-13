@@ -11,11 +11,11 @@ const FormStyles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    height: 40,
     borderWidth: 1.5,
   },
   inputField: {
     flex: 1,
-    height: 40,
     padding: 10,
     // backgroundColor: 'blue',
   },

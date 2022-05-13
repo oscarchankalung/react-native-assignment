@@ -45,11 +45,11 @@ const styles = StyleSheet.create({
     // backgroundColor: 'orange',
   },
   text: {
-    fontSize: 18,
+    fontSize: 16,
     color: 'black',
   },
   selectedText: {
-    fontSize: 18,
+    fontSize: 16,
     color: 'red',
   },
 });
